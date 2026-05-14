@@ -2,7 +2,8 @@
 import { ArrowUp, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Logo, nav } from "./SiteLayout";
+import { Logo } from "./SiteLayout";
+import { nav } from "@/constants";
 
 export function ScrollTop() {
   const [show, setShow] = useState(false);

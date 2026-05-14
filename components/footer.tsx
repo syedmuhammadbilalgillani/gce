@@ -1,8 +1,13 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { Logo, nav } from "./SiteLayout";
+import { Logo } from "./SiteLayout";
+import { nav } from "@/constants";
 
 function Footer() {
+  console.log(nav);
+  console.log(typeof nav);
+  const navlins = nav;
+  console.log(navlins);
   return (
     <footer className="bg-primary-deep text-white/80 mt-24">
       <div className="container-gce py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -19,13 +24,17 @@ function Footer() {
             Quick Links
           </h4>
           <ul className="space-y-2.5 text-sm">
-            {nav?.length && nav.map((n) => (
-              <li key={n.to}>
-                <Link href={n.to} className="hover:text-gold transition-colors">
-                  {n.label}
-                </Link>
-              </li>
-            ))}
+            {nav?.length &&
+              nav.map((n) => (
+                <li key={n.to}>
+                  <Link
+                    href={n.to}
+                    className="hover:text-gold transition-colors"
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
         <div>

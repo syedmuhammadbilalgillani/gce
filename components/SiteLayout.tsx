@@ -1,12 +1,7 @@
 "use client";
 import Link from "next/link";
 
-export const nav = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/contact", label: "Contact" },
-] as const;
+
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (

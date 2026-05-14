@@ -80,26 +80,24 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <TooltipProvider>
-          <Header />
-          <Script
-            id="json-ld-organization"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
-          />
-          <Script
-            id="json-ld-website"
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
-          />
-          <ScrollTop />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </TooltipProvider>
+        <Header />
+        <Script
+          id="json-ld-organization"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <Script
+          id="json-ld-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
+        <ScrollTop />
+        <main id="main" className="flex-1">
+          <TooltipProvider>{children}</TooltipProvider>
+        </main>
+        <Footer />
       </body>
     </html>
   );
