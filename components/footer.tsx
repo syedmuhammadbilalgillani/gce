@@ -4,10 +4,6 @@ import { Logo } from "./SiteLayout";
 import { nav } from "@/constants";
 
 function Footer() {
-  console.log(nav);
-  console.log(typeof nav);
-  const navlins = nav;
-  console.log(navlins);
   return (
     <footer className="bg-primary-deep text-white/80 mt-24">
       <div className="container-gce py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
