@@ -1,14 +1,14 @@
+import Footer from "@/components/footer";
+import Header, { ScrollTop } from "@/components/navbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { DOMAIN_URL } from "@/constants";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -23,11 +23,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${montserrat.variable} h-full antialiased`}>
+      <body suppressHydrationWarning className="min-h-full flex flex-col">
+        <TooltipProvider>
+          <Header />
+          <Script
+            id="json-ld-organization"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "GCE Group",
+                legalName: "GCE (Pvt.) Ltd.",
+                url: DOMAIN_URL,
+                logo: `${DOMAIN_URL}/favicon.ico`,
+                slogan: "We Care",
+                description:
+                  "GCE Group delivers engineering, environmental, energy, digital, mining, and industrial solutions through specialized companies, practical expertise, and execution-focused delivery.",
+                email: "info@gceofficial.com",
+                telephone: "+92 42 35971455",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "7-A Main Gulberg",
+                  addressLocality: "Lahore",
+                  addressCountry: "PK",
+                },
+                sameAs: [DOMAIN_URL],
+              }),
+            }}
+          />
+          <Script
+            id="json-ld-website"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "GCE Group",
+                url: DOMAIN_URL,
+                publisher: { "@type": "Organization", name: "GCE Group" },
+              }),
+            }}
+          />
+          <ScrollTop />
+          {children}
+          <Footer />
+        </TooltipProvider>
+      </body>
     </html>
   );
 }
