@@ -11,10 +11,9 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import GroupCompanies from "./group-companies";
+import { useEffect, useRef, useState } from "react";
 import OurJourney from "./group-companies";
 import VissionAndMission from "./vision-mission";
 
@@ -201,13 +200,13 @@ function HomePageComponent() {
       {/* HERO */}
       <section className="relative min-h-screen flex items-center text-white overflow-hidden">
         <Image
-          src="/hero.jpg"
+          src="/hero.webp"
           alt="GCE Group engineering operations"
           width={1920}
           height={1080}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-br from-primary-deep/95 via-primary/85 to-primary-deep/70" />
+        {/* <div className="absolute inset-0 bg-linear-to-b+r from-primary-deep/95 via-primary/85 to-primary-deep/70" /> */}
         <div className="container-gce relative py-32">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-white/5 backdrop-blur text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />{" "}

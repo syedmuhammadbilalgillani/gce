@@ -38,6 +38,8 @@ export function generateMetadataProps({
       "max-image-preview": "large",
       "max-video-preview": -1,
     },
+    metadataBase: new URL(url),
+
     openGraph: {
       title: ogTitle || title,
       description: ogDescription || description,
