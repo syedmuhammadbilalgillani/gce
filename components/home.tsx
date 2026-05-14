@@ -201,10 +201,14 @@ function HomePageComponent() {
       <section className="relative min-h-screen flex items-center text-white overflow-hidden">
         <Image
           src="/hero.webp"
-          alt="GCE Group engineering operations"
+          alt="GCE Group engineering operations across mining, environment, energy and industrial sectors"
           width={1920}
           height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={75}
+          className="absolute inset-0 w-full h-full object-cover -z-10"
         />
         {/* <div className="absolute inset-0 bg-linear-to-b+r from-primary-deep/95 via-primary/85 to-primary-deep/70" /> */}
         <div className="container-gce relative py-32">
@@ -226,7 +230,7 @@ function HomePageComponent() {
               href="/services"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-md bg-gradient-gold text-primary-deep font-semibold hover:shadow-elevated transition-shadow"
             >
-              Explore Our Services <ArrowRight size={18} />
+              Explore Our Services <ArrowRight size={18} aria-hidden="true" />
             </Link>
             <Link
               href="/contact"
@@ -283,6 +287,8 @@ function HomePageComponent() {
                       loading="lazy"
                       width={1280}
                       height={800}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={70}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
@@ -299,7 +305,7 @@ function HomePageComponent() {
                       {s.desc}
                     </p>
                     <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold group-hover:gap-3 transition-all">
-                      Learn more <ArrowRight size={16} />
+                      Learn more <ArrowRight size={16} aria-hidden="true" />
                     </div>
                   </div>
                 </Link>
@@ -330,7 +336,7 @@ function HomePageComponent() {
                 return (
                   <div key={item.t} className="flex gap-4">
                     <div className="w-10 h-10 rounded-lg bg-white border border-gold/30 flex items-center justify-center text-gold shrink-0">
-                      <Icon size={18} />
+                      <Icon size={18} aria-hidden="true" />
                     </div>
                     <div>
                       <div className="font-semibold text-primary">{item.t}</div>
@@ -348,18 +354,22 @@ function HomePageComponent() {
             <div className="relative grid grid-cols-2 gap-4">
               <Image
                 src="/mining.webp"
-                alt="Mining"
+                alt="Mining operations and mineral processing"
                 loading="lazy"
                 width={600}
                 height={400}
+                sizes="(max-width: 1024px) 50vw, 320px"
+                quality={70}
                 className="rounded-xl shadow-card aspect-4/5 object-cover translate-y-6"
               />
               <Image
                 src="/energy.webp"
-                alt="Energy"
+                alt="Energy systems and renewable power engineering"
                 loading="lazy"
                 width={600}
                 height={400}
+                sizes="(max-width: 1024px) 50vw, 320px"
+                quality={70}
                 className="rounded-xl shadow-card aspect-4/5 object-cover"
               />
             </div>
@@ -396,9 +406,12 @@ function HomePageComponent() {
                   <div className="relative w-full h-full">
                     <Image
                       src={client}
-                      alt={`Client ${i + 1}`}
+                      alt={`Client logo ${(i % clients.length) + 1}`}
                       fill
-                      className={`object-contain  transition duration-300 ${darkClient.includes(client) ? "bg-black p-2" : ""}`}
+                      sizes="220px"
+                      loading="lazy"
+                      quality={70}
+                      className={`object-contain transition duration-300 ${darkClient.includes(client) ? "bg-black p-2" : ""}`}
                     />
                   </div>
                 </div>
@@ -429,7 +442,7 @@ function HomePageComponent() {
                 key={s.t}
                 className="p-6 rounded-xl bg-white border border-border"
               >
-                <CheckCircle2 className="text-gold mb-3" size={22} />
+                <CheckCircle2 className="text-gold mb-3" size={22} aria-hidden="true" />
                 <h3 className="font-bold text-primary text-base">{s.t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {s.d}

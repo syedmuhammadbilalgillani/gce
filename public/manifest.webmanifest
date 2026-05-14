@@ -1,0 +1,16 @@
+{
+  "name": "GCE Group",
+  "short_name": "GCE",
+  "description": "GCE Group — Integrated Engineering Solutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1A2B5F",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

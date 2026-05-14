@@ -49,10 +49,14 @@ function ContactComponent() {
               <Field label="Phone" name="phone" />
               <Field label="Company / Organization" name="company" />
               <div className="sm:col-span-2">
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label
+                  htmlFor="contact-service"
+                  className="block text-sm font-semibold text-primary mb-2"
+                >
                   Service of Interest
                 </label>
                 <select
+                  id="contact-service"
                   name="service"
                   className="w-full px-4 py-3 rounded-md border border-input bg-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-all"
                 >
@@ -64,13 +68,18 @@ function ContactComponent() {
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-semibold text-primary mb-2">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm font-semibold text-primary mb-2"
+                >
                   Project Description
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows={5}
                   required
+                  aria-required="true"
                   className="w-full px-4 py-3 rounded-md border border-input bg-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-all"
                   placeholder="Tell us about your project, scope, location, and required support..."
                 />
@@ -162,16 +171,38 @@ function Field({
   type?: string;
   required?: boolean;
 }) {
+  const id = `contact-${name}`;
+  const autoComplete =
+    name === "name"
+      ? "name"
+      : name === "email"
+        ? "email"
+        : name === "phone"
+          ? "tel"
+          : name === "company"
+            ? "organization"
+            : undefined;
   return (
     <div>
-      <label className="block text-sm font-semibold text-primary mb-2">
+      <label
+        htmlFor={id}
+        className="block text-sm font-semibold text-primary mb-2"
+      >
         {label}
-        {required && <span className="text-gold"> *</span>}
+        {required && (
+          <span className="text-gold" aria-hidden="true">
+            {" "}
+            *
+          </span>
+        )}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         required={required}
+        aria-required={required || undefined}
+        autoComplete={autoComplete}
         className="w-full px-4 py-3 rounded-md border border-input bg-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition-all"
       />
     </div>
