@@ -27,6 +27,17 @@ export const metadata: Metadata = {
     default: "GCE Group — Integrated Engineering Solutions | We Care",
     template: "%s | GCE Group",
   },
+  robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
   description:
     "GCE Group delivers engineering, environmental, energy, digital, mining, and industrial solutions through specialized companies, practical expertise, and execution-focused delivery.",
   icons: {
