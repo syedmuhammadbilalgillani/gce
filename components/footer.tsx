@@ -8,7 +8,7 @@ function Footer() {
     <footer className="bg-primary-deep text-white/80 mt-24">
       <div className="container-gce py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
-          <Logo light />
+          <Logo light={false} />
           <p className="mt-5 text-sm leading-relaxed text-white/60">
             GCE Group delivers engineering, environmental, energy, digital,
             mining, and industrial solutions through specialized companies,
@@ -49,16 +49,21 @@ function Footer() {
             Contact
           </h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex gap-3">
-              <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
-              <span>7-A, Main Gulberg, Lahore, Pakistan</span>
+            <li className="">
+              <a
+                className="flex gap-3"
+                href="https://maps.app.goo.gl/PkPwg5NP4GhJdZrg8"
+              >
+                <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
+                <span>7-A, Main Gulberg, Lahore, Pakistan</span>
+              </a>
             </li>
             <li className="flex gap-3">
               <Phone size={16} className="text-gold mt-0.5 shrink-0" />
               <span>
-                +92 42 35971455
+                <a href="tel:+92 42 35971455">+92 42 35971455</a>
                 <br />
-                +92 321 786 0 915
+                <a href="tel:+92 321 786 0 915">+92 321 786 0 915</a>
               </span>
             </li>
             <li className="flex gap-3">

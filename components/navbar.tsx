@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "./SiteLayout";
 import { nav } from "@/constants";
+import { usePathname } from "next/navigation";
 
 export function ScrollTop() {
   const [show, setShow] = useState(false);
@@ -24,28 +25,27 @@ export function ScrollTop() {
   );
 }
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const pathname = usePathname();
+  // useEffect(() => {
+  //   const onScroll = () => setScrolled(window.scrollY > 20);
+  //   onScroll();
+  //   window.addEventListener("scroll", onScroll);
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur shadow-card" : "bg-transparent"}`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur shadow-card ${pathname === "/leads" ? "hidden" : ""} `}
     >
       <div className="container-gce flex items-center justify-between h-20">
-        <Logo light={!scrolled} />
+        <Logo light={true} />
         <nav className="hidden lg:flex items-center gap-1">
           {nav?.length &&
             nav.map((n) => (
               <Link
                 key={n.to}
                 href={n.to}
-                // activeOptions={{ exact: n.to === "/" }}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${scrolled ? "text-foreground hover:text-gold" : "text-white/90 hover:text-gold"}`}
+                className={`px-4 py-2 text-base font-medium rounded-md transition-colors text-foreground hover:text-gold ${pathname === n.to ? "text-gold" : ""}`}
                 // activeProps={{ className: "text-gold" }}
               >
                 {n.label}
@@ -53,14 +53,14 @@ function Header() {
             ))}
           <Link
             href="/contact"
-            className="ml-3 inline-flex items-center px-5 py-2.5 rounded-md bg-gradient-gold text-primary-deep text-sm font-semibold hover:shadow-elevated transition-shadow"
+            className="ml-3 inline-flex items-center px-5 py-2.5 rounded-md bg-gradient-gold text-primary-deep text-base font-semibold hover:shadow-elevated transition-shadow"
           >
             Get In Touch
           </Link>
         </nav>
         <button
           onClick={() => setOpen(!open)}
-          className={`lg:hidden p-2 rounded-md ${scrolled ? "text-foreground" : "text-white"}`}
+          className={`lg:hidden p-2 rounded-md text-white}`}
           aria-label="Menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}

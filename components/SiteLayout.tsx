@@ -1,33 +1,20 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-
-
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="flex items-center gap-2.5 group">
-      <div className="w-10 h-10 rounded-md bg-gradient-gold flex items-center justify-center font-display font-extrabold text-primary-deep text-lg shadow-card">
-        G
-      </div>
-      <div className="leading-tight">
-        <div
-          className={`font-display font-bold text-base tracking-tight ${light ? "text-white" : "text-primary"}`}
-        >
-          GCE <span className="text-gold">Group</span>
-        </div>
-        <div
-          className={`text-[10px] uppercase tracking-[0.18em] ${light ? "text-white/60" : "text-muted-foreground"}`}
-        >
-          We Care
-        </div>
-      </div>
+    <Link href="/">
+      <Image
+        src={light ? "/gceb.svg" : "/gcey.svg"}
+        className="object-contain"
+        alt="GCE Group"
+        width={180}
+        height={35}
+      />
     </Link>
   );
 }
-
-
-
-
 
 export function PageHero({
   eyebrow,

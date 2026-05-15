@@ -190,11 +190,6 @@ function HomePageComponent() {
     return () => clearInterval(interval);
   }, []);
 
-  const darkClient = [
-    "/companies/1.webp",
-    "/companies/5.webp",
-    "/companies/8.webp",
-  ];
   return (
     <>
       {/* HERO */}
@@ -210,7 +205,7 @@ function HomePageComponent() {
           quality={75}
           className="absolute inset-0 w-full h-full object-cover -z-10"
         />
-        {/* <div className="absolute inset-0 bg-linear-to-b+r from-primary-deep/95 via-primary/85 to-primary-deep/70" /> */}
+        <div className="absolute inset-0 bg-linear-to-br from-primary-deep/70 via-primary/60 to-primary-deep/50" />
         <div className="container-gce relative py-32">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/40 bg-white/5 backdrop-blur text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />{" "}
@@ -401,19 +396,18 @@ function HomePageComponent() {
               {[...clients, ...clients].map((client, i) => (
                 <div
                   key={i}
-                  className="min-w-[220px] h-24 flex items-center justify-center px-6"
+                  className="min-w-55 h-24 flex items-center justify-center px-6"
                 >
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={client}
-                      alt={`Client logo ${(i % clients.length) + 1}`}
-                      fill
-                      sizes="220px"
-                      loading="lazy"
-                      quality={70}
-                      className={`object-contain transition duration-300 ${darkClient.includes(client) ? "bg-black p-2" : ""}`}
-                    />
-                  </div>
+                  <Image
+                    src={client}
+                    alt={`Client logo ${(i % clients.length) + 1}`}
+                    width={180}
+                    height={80}
+                    sizes="220px"
+                    loading="lazy"
+                    quality={70}
+                    className={`object-contain w-auto h-auto max-h-full transition duration-300 `}
+                  />
                 </div>
               ))}
             </div>
@@ -442,7 +436,11 @@ function HomePageComponent() {
                 key={s.t}
                 className="p-6 rounded-xl bg-white border border-border"
               >
-                <CheckCircle2 className="text-gold mb-3" size={22} aria-hidden="true" />
+                <CheckCircle2
+                  className="text-gold mb-3"
+                  size={22}
+                  aria-hidden="true"
+                />
                 <h3 className="font-bold text-primary text-base">{s.t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {s.d}
