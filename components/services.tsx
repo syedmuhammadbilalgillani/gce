@@ -3,7 +3,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Code,
-  ExternalLink,
   Leaf,
   LucideIcon,
   Mountain,
@@ -17,6 +16,7 @@ import { useState } from "react";
 import { PageHero } from "@/components/SiteLayout";
 import Image from "next/image";
 import Link from "next/link";
+import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 
 // export const Route = createFileRoute("/services")({
 //   head: () => ({
@@ -38,9 +38,8 @@ type Domain = {
   icon: LucideIcon;
   img: string;
   desc: string;
-  companies?: string;
-  externalLabel?: string;
-  externalUrl?: string;
+  companies?: { name: string; image: string; url?: string }[];
+
   externalNote?: string;
   experienceNote?: string;
   services: { title: string; desc: string }[];
@@ -53,8 +52,18 @@ const divisions: Record<DivKey, Domain> = {
     icon: Mountain,
     img: "/mining.webp",
     desc: "Technical and industrial support for mineral exploration, mine planning, surveys, feasibility studies, mineral processing, regulatory approvals, mine operations assistance, and mining-linked business development.",
-    companies:
-      "GCE, The Survey Bridge, TQL Salt, Coal Pro, Biomass Pro, Premier Salt",
+    companies: [
+      { name: "GCE", image: "/gceb.svg", url: "https://gceofficial.com" },
+      { name: "The Survey Bridge", image: "/companies/surveybridge.webp" },
+      { name: "TQL Salt", image: "/companies/tql.webp" },
+      { name: "Coal Pro", image: "/companies/coalpro.webp" },
+      { name: "Biomass Pro", image: "/companies/biomass.webp" },
+      {
+        name: "Premier Salt",
+        image: "/companies/premier.webp",
+        url: "https://premiersalt.pk/",
+      },
+    ],
     experienceNote:
       "The group has experience across rock salt, coal, limestone, bauxite, laterite, silica sand, gypsum, fire clay, iron ore, industrial minerals, and mining-linked industrial facilities.",
     services: [
@@ -94,7 +103,13 @@ const divisions: Record<DivKey, Domain> = {
     icon: Leaf,
     img: "/environment.webp",
     desc: "Environmental studies, approvals, compliance, monitoring, hydrology, wastewater, WASH, and sustainability-focused engineering for mining, industrial, and development projects.",
-    companies: "GCE",
+    companies: [
+      {
+        name: "GCE",
+        image: "/gceb.svg",
+        url: "https://gceofficial.com",
+      },
+    ],
     services: [
       {
         title: "IEE / EIA Studies",
@@ -128,9 +143,13 @@ const divisions: Record<DivKey, Domain> = {
     icon: Zap,
     img: "/energy.webp",
     desc: "Power system studies, substation design, renewable energy integration, BESS, grid engineering, protection, and energy project advisory through Gridnewable.",
-    companies: "Gridnewable",
-    externalLabel: "Visit Gridnewable",
-    externalUrl: "https://gridnewable.com/",
+    companies: [
+      {
+        name: "Gridnewable",
+        image: "/companies/gridnewable.webp",
+        url: "https://gridnewable.com/",
+      },
+    ],
     externalNote:
       "Detailed energy capabilities, project experience, and international delivery model are available through Gridnewable's dedicated website.",
     services: [
@@ -166,9 +185,14 @@ const divisions: Record<DivKey, Domain> = {
     icon: Code,
     img: "/digital.webp",
     desc: "Software development, AI automation, business systems, web platforms, digital branding, and technology solutions through STS / Softech Sol.",
-    companies: "STS / Softech Sol",
-    externalLabel: "Visit Softech Sol",
-    externalUrl: "https://softechsol.com/",
+    companies: [
+      {
+        name: "Softech Sol",
+        image: "/companies/sts.webp",
+        url: "https://softechsol.com/",
+      },
+    ],
+
     externalNote:
       "Detailed digital services, software capabilities, and portfolio examples are available through Softech Sol's dedicated website.",
     services: [
@@ -272,26 +296,42 @@ function ServicesComponent() {
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 {d.desc}
               </p>
-              {d.companies && (
-                <div className="mt-5 p-4 rounded-lg bg-surface border border-border">
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-gold mb-1">
-                    Group Companies
-                  </div>
-                  <div className="text-sm text-primary font-medium">
-                    {d.companies}
-                  </div>
-                </div>
-              )}
-              {d.externalUrl && (
-                <a
-                  href={d.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 px-5 py-3 rounded-md bg-primary text-white text-sm font-semibold hover:bg-primary-deep transition-colors"
-                >
-                  {d.externalLabel} <ExternalLink size={16} />
-                </a>
-              )}
+              <div className="rounded-2xl border border-border bg-card overflow-hidden">
+                <Table>
+                  <TableBody>
+                    {d?.companies?.map((company, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="pl-5">
+                          <a
+                            href={company.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center w-20 h-20 rounded-xl   overflow-hidden"
+                          >
+                            <Image
+                              src={company.image}
+                              alt={company.name}
+                              width={48}
+                              height={48}
+                              className="object-contain w-auto h-auto max-w-full max-h-full"
+                            />
+                          </a>
+                        </TableCell>
+
+                        <TableCell className="font-medium text-foreground">
+                          <a
+                            href={company.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {company.name}
+                          </a>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
             <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
               {d.services.map((s) => (

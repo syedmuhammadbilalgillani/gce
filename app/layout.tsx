@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Header, { ScrollTop } from "@/components/navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import { DOMAIN_URL } from "@/constants";
 import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
@@ -28,16 +29,16 @@ export const metadata: Metadata = {
     template: "%s | GCE Group",
   },
   robots: {
+    index: true,
+    follow: true,
+    googleBot: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-snippet": -1,
-        "max-image-preview": "large",
-        "max-video-preview": -1,
-      },
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
+  },
   description:
     "GCE Group delivers engineering, environmental, energy, digital, mining, and industrial solutions through specialized companies, practical expertise, and execution-focused delivery.",
   icons: {
@@ -84,10 +85,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} h-full antialiased`}>
-      <body suppressHydrationWarning className="min-h-full flex flex-col">
+      <head>
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+      </head>
+      <body
+        suppressHydrationWarning
+        suppressContentEditableWarning
+        className="min-h-full flex flex-col"
+      >
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-white"
         >
           Skip to main content
         </a>
@@ -109,6 +117,7 @@ export default function RootLayout({
           <TooltipProvider>{children}</TooltipProvider>
         </main>
         <Footer />
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );
